@@ -19,64 +19,43 @@ import Hernandez.bcs345payroll.employeedata.WorkerInfo;
 
 public class Worker {
 
-	//class member variables
-	WorkerInfo WI;
-	TimeSheet TS;
-	
-	//****************************************************
-	// Method:  Worker
-	//
-	// Purpose:  Default constructor that sets default values
-	//****************************************************
-	public Worker()
-	{
-		WI = new WorkerInfo();
-		TS = new TimeSheet();
+	private WorkerInfo workerInfo;
+	private TimeSheet timseSheet;
+
+	public Worker() {
+		workerInfo = new WorkerInfo();
+		timseSheet = new TimeSheet();
 	}
-	
-	//****************************************************
-	// Method:  getWorkerInfo
-	//
-	// Purpose:  get method that returns the Worker info.
-	//****************************************************
-	public WorkerInfo getWorkerInfo(){return WI;}
-	
-	//****************************************************
-	// Method:  getTimeSheet
-	//
-	// Purpose:  get method that returns the TimeSheet info.
-	//****************************************************
-	public TimeSheet getTimeSheet(){return TS;}
-	
-	//****************************************************
-	// Method:  Report
-	//
-	// Purpose:  Writes the info to the screen
-	//****************************************************
-	public void Report(PrintStream ps){
-	ps.printf("WorkerInfo Report\n");
-	ps.printf("-----------------\n");
-	ps.printf("Id: %12d \n" , WI.getId());
-	ps.printf("First: %11s \n" , WI.getFirstName());
-	ps.printf("Last: %12s \n" , WI.getLastName());
-	ps.printf("State: %8s \n" , WI.getState());
-	ps.printf("Hourly Rate: %5.2f \n" , WI.getHourlyRate());
-	ps.printf("\n");
-	TS.ShiftReport(ps);
-	ps.close();
-	
+
+	public WorkerInfo getWorkerInfo() {
+		return workerInfo;
 	}
-	//****************************************************
-	// Method:  Write
-	//
-	// Purpose:  Writes the info to a file
-	//****************************************************
-	public void Write(PrintStream ps){WI.Write(ps);TS.Write(ps);}
-	
-	//****************************************************
-	// Method:  Read
-	//
-	// Purpose:  Read the info from a file
-	//****************************************************
-	public void Read(Scanner s){WI.Read(s);TS.Read(s);}
+
+	public TimeSheet getTimeSheet() {
+		return timseSheet;
+	}
+
+	public void Report(PrintStream ps) {
+		ps.printf("WorkerInfo Report\n");
+		ps.printf("-----------------\n");
+		ps.printf("Id: %12d \n", workerInfo.getId());
+		ps.printf("First: %11s \n", workerInfo.getFirstName());
+		ps.printf("Last: %12s \n", workerInfo.getLastName());
+		ps.printf("State: %8s \n", workerInfo.getState());
+		ps.printf("Hourly Rate: %5.2f \n", workerInfo.getHourlyRate());
+		ps.printf("\n");
+		timseSheet.ShiftReport(ps);
+		ps.close();
+
+	}
+
+	public void Write(PrintStream ps) {
+		workerInfo.Write(ps);
+		timseSheet.Write(ps);
+	}
+
+	public void Read(Scanner s) {
+		workerInfo.Read(s);
+		timseSheet.Read(s);
+	}
 }

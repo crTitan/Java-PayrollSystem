@@ -18,98 +18,68 @@ import Hernandez.bcs345.payroll.helperclasses.*;
 
 public class Shift {
 
-	//class variables
 	private int id;
 	private double hoursWorked;
-	Date newDate = new Date(1, 1, 2000);
-	
-	//****************************************************
-	// Method: Shift
-	//
-	//Purpose:  default constructor
-	//****************************************************
-	public Shift()
-	{
+	private Date date = new Date(1, 1, 2000);
+
+	public Shift() {
 		id = 0;
 		hoursWorked = 0.0;
 	}
-	
-	//****************************************************
-	// Method: Shift
-	//
-	//Purpose:  Overloading constructor.
-	//			Overloads the default values
-	//****************************************************
-	public Shift(int idNum, double hw, Date d)
-	{
+
+	public Shift(int idNum, double hw, Date d) {
 		id = idNum;
 		hoursWorked = hw;
-		newDate = d;
+		date = d;
 	}
-	
-	//****************************************************
-	// Method: getId
-	//
-	//Purpose:  method that returns the id
-	//****************************************************
-	public int getId(){return id;}
-	
-	//****************************************************
-	// Method: getHoursWorked
-	//
-	//Purpose:  method that returns the hours worked
-	//****************************************************
-	public double getHoursWorked(){return hoursWorked;}
-	
-	//****************************************************
-	// Method: getDate
-	//
-	//Purpose:  method that returns the date
-	//****************************************************
-	public Date getDate(){return newDate;}
-	
-	//****************************************************
-	// Method: setId
-	//
-	//Purpose:  method that sets the new id
-	//****************************************************
-	public void setId(int newId){id = newId;}
-	
-	//****************************************************
-	// Method: setHoursWorked
-	//
-	//Purpose:  method that sets the hours worked
-	//****************************************************
-	public void setHoursWorked(double newHoursWorked){hoursWorked = newHoursWorked;}
-	
-	//****************************************************
-	// Method: SetDate
-	//
-	//Purpose:  method that sets the new date
-	//****************************************************
-	public void setDate(Date new_Date) {newDate = new_Date;}
-	
-	//****************************************************// Method: Read 
-	//Method: Write	
-	//
-	//Purpose: PrintStream that prints to a file.
-	//****************************************************
-	public void Write(PrintStream ps) 
-	{
+
+	public int getId() {
+		return id;
+	}
+
+	public double getHoursWorked() {
+		return hoursWorked;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public int getDay() {
+		return date.getDay();
+	}
+
+	public int getMonth() {
+		return date.getMonth();
+	}
+
+	public int getYear() {
+		return date.getYear();
+	}
+
+	public void setId(int newId) {
+		id = newId;
+	}
+
+	public void setHoursWorked(double newHoursWorked) {
+		hoursWorked = newHoursWorked;
+	}
+
+	public void setDate(Date new_Date) {
+		date = new_Date;
+	}
+
+	public void Write(PrintStream ps) {
 		ps.printf("%5d %6.2f ", id, hoursWorked);
-		newDate.Write(ps);
+		date.Write(ps);
 	}
-	
-	//****************************************************
-	// Method: Read 
-	//		
-	//Purpose:  Uses a Scanner to read in the employee info
-	// 			Reads the employee id
-	// 			Uses the Read() from Date to read in the date  
-	//****************************************************
-	public void Read(Scanner s){
-		setId(s.nextInt());
-		setHoursWorked(s.nextDouble());
-		newDate.Read(s);
-		}
+
+	public void Read(Scanner scanner) {
+
+		setId(scanner.nextInt());
+
+		setHoursWorked(scanner.nextDouble());
+
+		date.Read(scanner);
+	}
 }

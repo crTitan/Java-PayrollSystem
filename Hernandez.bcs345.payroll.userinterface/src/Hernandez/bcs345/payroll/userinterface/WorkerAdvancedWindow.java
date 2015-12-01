@@ -50,198 +50,81 @@ public class WorkerAdvancedWindow extends JFrame implements ActionListener{
 	
 	public WorkerAdvancedWindow()
 	{
-		//Sets the window  title and size
 		setTitle("PayRoll System");
 		setSize(800,800);
 		
-		
-		//Instantiates the worker variable
 		newWorker = new Worker();
 		TS = new TimeSheet();
-				
-		//****************************************************
-		//Creates a MenuBar
-		//Creates a new menu 
-		//Adds the menu to the MenuBar
-		//****************************************************
+		
 		JMenuBar newBar = new JMenuBar();
 		JMenu menu =  new JMenu("Menu");
 		newBar.add(menu);
 		
-		//****************************************************
-		//Adds the Open menu item
-		//****************************************************
 		JMenuItem openItem = new JMenuItem("Open..."); 
 		menu.add(openItem);
 		
-		//****************************************************
-		//Listens to the openItem menu item
-		//****************************************************
 		openItem.addActionListener(this);
 
-		//****************************************************
-		//Adds a new separator
-		//****************************************************
 		menu.add(new JSeparator());
 		
-		//****************************************************
-		//Adds the Save As menu item
-		//****************************************************
 		JMenuItem saveAsItem = new JMenuItem("Save As..."); 
 		menu.add(saveAsItem);
 
-		//****************************************************
-		//Listens to the openItem menu item
-		//****************************************************
 		saveAsItem.addActionListener(this);
 	
-		//****************************************************
-		//Adds a new separator
-		//****************************************************
 		menu.add(new JSeparator());
-		
-		//****************************************************
-		//Adds the Report menu item
-		//****************************************************
+	
 		JMenuItem reportItem = new JMenuItem("Report..."); 
 		menu.add(reportItem);
 
-		//****************************************************
-		//Listens to the openItem menu item
-		//****************************************************
 		reportItem.addActionListener(this);
-				
-		//****************************************************
-		//Adds a new separator
-		//****************************************************
+		
 		menu.add(new JSeparator());
 		
-		//****************************************************
-		//Adds the Exit menu item
-		//****************************************************
 		JMenuItem exitItem = new JMenuItem("Exit"); 
 		menu.add(exitItem);
 		
-		//****************************************************
-		//Listens to the openItem menu item
-		//****************************************************
 		exitItem.addActionListener(this);
 				
-		//****************************************************
-		//Adds the menu bar to the window
-		//****************************************************
 		this.setJMenuBar(newBar);
 
-		//Creates the JTabbedPane and add it to the window
+		//Adds to the window
 		myTabbedPane = new JTabbedPane();
 		add(myTabbedPane);
-				
-		//****************************************************
-		//Create the first Panel	
-		//****************************************************	
+		
 		JPanel panelOne;
 		panelOne =new JPanel();
-		
-		//Sets the background color
+	
 		panelOne.setBackground(Color.LIGHT_GRAY);
 		
-		//****************************************************
-		//Allocates new memory and adds a value to
-		//the JLabel variable
-		//Adds the label to the panel
-		//****************************************************
 		Jlab = new JLabel("Id");
 		panelOne.add(Jlab);
-		
-		//****************************************************
-		//The i String stores the int Id value in the
-		//WorkerInfor Class.
-		//****************************************************
+
 		Integer i = newWorker.getWorkerInfo().getId();
-			
-		//****************************************************
-		//Allocates new memory and passes a value to
-		//the JTextField variable
-		//i.toString() converts the int Id value to a string
-		//Adds the TextField to the panel
-		//****************************************************
+
 		panelOne.add(textFieldId = new JTextField(i.toString()));
 		
-		//****************************************************
-		//Allocates new memory ands adds a value to
-		//the JLabel variable
-		//Adds the label to the panel
-		//****************************************************
 		panelOne.add(Jlab =new JLabel("First"));
-		
-		//****************************************************
-		//Allocates new memory for the JTextField variable
-		//and passes in a value
-		//Adds the TextField to the panel
-		//****************************************************
+	
 		panelOne.add(textFieldFirst = new JTextField(newWorker.getWorkerInfo().getFirstName()));
-			
-		//****************************************************
-		//Allocates new memory and passes a value to the
-		//JLabel variable
-		//Adds the label to the panel
-		//****************************************************
+	
 		panelOne.add(Jlab =new JLabel("Last"));
-		
-		//****************************************************
-		//Allocates new memory and passes a value to
-		//the JTextField variable
-		//Adds the textFieldLast TextField to the panel
-		//****************************************************
+	
 		panelOne.add(textFieldLast = new JTextField(newWorker.getWorkerInfo().getLastName()));
-		
-		//****************************************************
-		//Allocates new memory for the JLabel variable
-		//and passes in a value
-		//Adds the label to the panel
-		//****************************************************
+	
 		panelOne.add(Jlab =new JLabel("State"));
-		
-		//****************************************************
-		//Allocates new memory for the JTextField variable
-		//and passes in a value
-		//Adds the textFieldState TextField to the panel
-		//****************************************************
+
 		panelOne.add(textFieldState = new JTextField(newWorker.getWorkerInfo().getState()));
 
-		//****************************************************
-		//Allocates new memory and passes a value to
-		//the JLabel variable
-		//Adds the label to the panel
-		//****************************************************
 		panelOne.add(Jlab =new JLabel("Hourly Rate"));
-		
-		//****************************************************
-		//Allocates new memory for the JTextField variable
-		//the perHour String store a converted version of the
-		//double stored in the WorkerInfor Class.
-		//The perHour variable is then passed as a parameter.
-		//Allocates new memory for the JTextField variable
-		//****************************************************
+
 		String perHour = String.valueOf(newWorker.getWorkerInfo().getHourlyRate());
 		textFieldHourlyRate = new JTextField(perHour);
 		
-		//****************************************************
-		//Adds the textFieldHourlyRate TextField to the panel
-		//****************************************************
 		panelOne.add(textFieldHourlyRate);
 
-		//****************************************************
-		//Creates and initializes a new GridLayout with zero
-		//rows and two columns
-		///Sets the Layout to the first panel
-		//****************************************************
 		panelOne.setLayout(new GridLayout(0,2));
 
-		//****************************************************
-		//Adds the Worker Information tab
-		//Adds the first panel to the tab
-		//****************************************************
 		myTabbedPane.addTab("Worker Information", panelOne);
 		
 		//Creates a the second panel
@@ -253,19 +136,10 @@ public class WorkerAdvancedWindow extends JFrame implements ActionListener{
 		//Initializes the the listModel variable
 		listModel = new DefaultListModel<String>();
 		
-		//create the actual list and allocates memory
-		//passes in the listModel variable
         shiftList = new JList<String>(listModel);
-     		        
-        //****************************************************
-		//Adds the JList to the second panel
-        //****************************************************
+  
 		panelTwo.add(shiftList);
 				
-		//****************************************************
-		//Adds the Time Sheet tab
-		//Adds the second panel to the tab
-		//****************************************************
 		myTabbedPane.addTab("Time Sheet", panelTwo);
 		
 	}//end constructor	
@@ -289,6 +163,7 @@ public class WorkerAdvancedWindow extends JFrame implements ActionListener{
 					
 					//Scanner declaration
 					Scanner fileScnner;
+					
 					try 
 					{
 						//new Scanner ins
@@ -323,7 +198,7 @@ public class WorkerAdvancedWindow extends JFrame implements ActionListener{
 							+ newWorker.getTimeSheet().newShift[j].getDate().getDay() + " "
 							+ newWorker.getTimeSheet().newShift[j].getDate().getYear());
 						}
-					} catch (FileNotFoundException e1) 
+					} catch (FileNotFoundException ex) 
 					{
 						System.out.print("The File could not be loaded");
 					}
@@ -388,7 +263,8 @@ public class WorkerAdvancedWindow extends JFrame implements ActionListener{
 						}	
 						//closes the Print Stream 
 						saveAsFile.close();
-					} catch (FileNotFoundException e1) 
+						
+					} catch (FileNotFoundException ex) 
 					{			
 						System.out.print("File could not be created");
 					}
@@ -426,7 +302,7 @@ public class WorkerAdvancedWindow extends JFrame implements ActionListener{
 						//closes the Print Stream
 						report2File.close();
 						
-					} catch (FileNotFoundException e1) 
+					} catch (FileNotFoundException ex) 
 					{
 						System.out.print("File could not be created");
 					}

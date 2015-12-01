@@ -18,13 +18,10 @@ public class WorkerAdvancedSwingUI extends JFrame{
 
 	public void ShowUserInterface()
 	{
-		//Creates a new instance of the WorkerAdvancedWindow
 		WorkerAdvancedWindow newAdnceWorker;
 		
-		//Initializes the WorkerAdvancedWindow
 		newAdnceWorker = new WorkerAdvancedWindow();
 		
-		//Sets the visibility to true
 		newAdnceWorker.setVisible(true);	
-		}
+	}
 }

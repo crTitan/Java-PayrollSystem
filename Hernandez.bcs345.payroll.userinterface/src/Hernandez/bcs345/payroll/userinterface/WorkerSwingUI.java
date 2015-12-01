@@ -17,21 +17,11 @@ public class WorkerSwingUI {
 	
 	public void ShowUserInterface() throws FileNotFoundException
 	{
-		//****************************************************
-		//Declares a new Window
-		//****************************************************
-		WorkerWindow win;
+		WorkerWindow workerWindow;
 		
+		workerWindow = new WorkerWindow();
 		
-		//****************************************************
-		//Creates a new instance a new Window
-		//****************************************************
-		win = new WorkerWindow();
-		
-		//****************************************************
-		//Sets visibility to true
-		//****************************************************
-		win.setVisible(true);
+		workerWindow.setVisible(true);
 	}
 
 }

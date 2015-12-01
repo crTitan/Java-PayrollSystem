@@ -14,7 +14,7 @@ package Hernandez.bcs345payroll.employeedata;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import Hernandez.bcs345payroll.employeedata.Shift;
+import Hernandez.bcs345.payroll.helperclasses.Date;
 
 public class TimeSheet {
 	
@@ -123,9 +123,9 @@ public class TimeSheet {
 		for (int i =0 ; i < count ; ++i)
 		{
 			ps.printf("%5d", newShift[i].getId());
-			ps.printf("%5d",newShift[i].newDate.getDay());
-			ps.printf("%7d",newShift[i].newDate.getMonth());
-			ps.printf("%8d",newShift[i].newDate.getYear());
+			ps.printf("%5d",newShift[i].getDay());
+			ps.printf("%7d",newShift[i].getMonth());
+			ps.printf("%8d",newShift[i].getYear());
 			ps.printf("%7.2f", newShift[i].getHoursWorked());
 			ps.printf("\n");
 			
