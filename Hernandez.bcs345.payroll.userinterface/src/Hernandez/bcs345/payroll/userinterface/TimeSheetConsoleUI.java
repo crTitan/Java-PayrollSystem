@@ -24,6 +24,7 @@ public class TimeSheetConsoleUI {
 	private TimeSheet newTimeSheet = new TimeSheet();
 	private int userInput;
 	private Scanner scanner = new Scanner(System.in);
+	String dummyVar;
 
 	public void ShowUserInterface() {
 
@@ -40,8 +41,11 @@ public class TimeSheetConsoleUI {
 
 				String inFileName;
 
-				System.out.println("Enter a file name: \n");
+				System.out.println("Enter a file name:");
 
+				//consumes the \n from nextInt()
+				dummyVar = scanner.nextLine();
+				
 				inFileName = scanner.nextLine();
 
 				Scanner fileScanner;
@@ -65,6 +69,9 @@ public class TimeSheetConsoleUI {
 
 				System.out.print("Enter a file name: \n");
 
+				//consumes the \n from nextInt()
+				dummyVar = scanner.nextLine();
+				
 				outFileName = scanner.nextLine();
 
 				PrintStream fileOut;
@@ -78,6 +85,8 @@ public class TimeSheetConsoleUI {
 
 					System.out.print("The output file " + outFileName + " could not be created");
 				}
+				
+				
 
 				break;
 
@@ -93,9 +102,9 @@ public class TimeSheetConsoleUI {
 
 				ps.println("Shift Report");
 				ps.println("------------");
-				ps.printf("%4s %7s %5s %6s %7s", "Id", "Month", "Day", "Year", "Hours");
+				ps.printf("%4s %7s %5s %6s %7s", "Id", "Hours", "Month", "Day", "Year");
 				ps.print('\n');
-				ps.printf("%4s %7s %5s %6s %7s", "--", "-----", "---", "----", "-----");
+				ps.printf("%4s %7s %5s %6s %7s", "--", "-----", "-----", "---", "----");
 				ps.print('\n');
 
 				for (int i = 0; i < x.length; i++)

@@ -94,4 +94,5 @@ public class WorkerInfo {
 		
 		setHourlyRate(s.nextDouble());
 	}
+	
 }

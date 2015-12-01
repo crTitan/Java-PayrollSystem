@@ -25,8 +25,11 @@ public class ShiftConsoleUI {
 	private Date date = new Date(1, 2, 2001);
 	private Scanner scanner = new Scanner(System.in);
 	private int input = 0;
+	@SuppressWarnings("unused")
+	private String dummyVar;
+	private Scanner fileScanner;
 
-	public void ShowUserInterface() throws FileNotFoundException {
+	public void ShowUserInterface() {
 
 		do {
 			System.out.print("Shift UI\n" + "--------\n" + "1 – Read in shift data from a file\n"
@@ -39,15 +42,24 @@ public class ShiftConsoleUI {
 
 			case 1:
 
-				String inFileNme;
-
-				System.out.println("Enter a file name: \n");
-
-				inFileNme = scanner.nextLine();
-
-				Scanner fileScanner = new Scanner(new File(inFileNme));
-
-				newShift.Read(fileScanner);
+				String inFileName;
+									
+				System.out.println("Enter a file name:");
+				
+				//consumes the \n from nextInt()
+				dummyVar = scanner.nextLine();
+				
+				inFileName = scanner.nextLine();
+				
+				try {
+					
+					fileScanner = new Scanner(new File(inFileName));
+					newShift.Read(fileScanner);
+					
+				} catch (FileNotFoundException e) {
+				
+					System.out.println("Could not fine file " + inFileName);
+				}
 
 				break;
 
@@ -55,19 +67,30 @@ public class ShiftConsoleUI {
 
 				String outFileName;
 
-				System.out.print("Enter a file name: \n");
+				System.out.println("Enter a file name:");
 
+				//consumes the \n from nextInt()
+				dummyVar = scanner.nextLine();
+				
 				outFileName = scanner.nextLine();
 
-				PrintStream fileOut = new PrintStream(new File(outFileName));
+				PrintStream fileOut;
 				
-				newShift.Write(fileOut);
-				
+				try {
+					
+					fileOut = new PrintStream(new File(outFileName));
+					newShift.Write(fileOut);
+					
+				} catch (FileNotFoundException e) {
+
+					System.out.println("Could not find file " + outFileName);
+				}
+							
 				break;
 
 			case 3:
 
-				System.out.print("Enter the worker Id: \n");
+				System.out.println("Enter the worker Id:");
 
 				newShift.setId(scanner.nextInt());
 
@@ -75,7 +98,7 @@ public class ShiftConsoleUI {
 
 			case 4:
 
-				System.out.print("Enter the hours worked: \n");
+				System.out.println("Enter the hours worked:");
 
 				newShift.setHoursWorked(scanner.nextDouble());
 
@@ -83,7 +106,7 @@ public class ShiftConsoleUI {
 
 			case 5:
 
-				System.out.print("Enter the new date: \n" + "Use the (dd mm yyyy) format\n");
+				System.out.println("Enter the new date: \n" + "Use the (mm  dd yyyy) format");
 
 				date.Read(scanner);
 
@@ -95,6 +118,8 @@ public class ShiftConsoleUI {
 
 				PrintStream print2Screen = new PrintStream(System.out);
 
+				System.out.println("Id  Hours  Month  Day   Year");
+				
 				newShift.Write(print2Screen);
 
 				System.out.print('\n');
@@ -103,13 +128,13 @@ public class ShiftConsoleUI {
 
 			case 7:
 
-				System.out.print("You exited the Shift Console UI program!");
-
+				System.out.println("You exited the Shift Console UI program!");
+						
 				break;
 
 			default:
 
-				System.out.print("That is an invalid entry!\n" + "Please enter a valid number or 7 to exit!\n");
+				System.out.println("That is an invalid entry!\n" + "Please enter a valid number or 7 to exit!");
 				
 				break;
 			}

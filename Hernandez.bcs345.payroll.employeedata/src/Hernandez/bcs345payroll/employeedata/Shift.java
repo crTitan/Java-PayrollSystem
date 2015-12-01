@@ -70,7 +70,7 @@ public class Shift {
 	}
 
 	public void Write(PrintStream ps) {
-		ps.printf("%5d %6.2f ", id, hoursWorked);
+		ps.printf("%d %6.2f ", id, hoursWorked);
 		date.Write(ps);
 	}
 

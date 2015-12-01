@@ -30,17 +30,23 @@ public class WorkerWindow extends JFrame{
 	private JTextField jTextField;
 	private Scanner scanner;
 	
-	public WorkerWindow() throws FileNotFoundException
+	public WorkerWindow()
 	{
 		setSize(500,500);
 		setTitle("BCS 345 - Paul Hernandez - Worker Data");	
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
-		scanner = new Scanner(new File("WorkerData.txt"));
-		
-		worker = new Worker();
-		worker.Read(scanner);
+		try {
 			
+			scanner = new Scanner(new File("WorkerData.txt"));
+			worker = new Worker();
+			worker.Read(scanner);
+			
+		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+		}
+		
 		jLabel = new JLabel("Id");
 		add(jLabel);
 		
@@ -74,6 +80,9 @@ public class WorkerWindow extends JFrame{
 		add(jTextField);
 
 		GridLayout gl = new GridLayout(0, 2);
-		setLayout(gl);	
+		setLayout(gl);
+		
+		scanner.close();
 	}
+
 }

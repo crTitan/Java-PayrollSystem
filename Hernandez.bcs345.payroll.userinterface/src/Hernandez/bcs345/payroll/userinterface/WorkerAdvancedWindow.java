@@ -40,10 +40,10 @@ import Hernandez.bcs345payroll.employeedata.Worker;
 public class WorkerAdvancedWindow extends JFrame implements ActionListener{
 	
 	//class variables
-	private Worker newWorker;
-	private TimeSheet TS;
+	private Worker worker;
+	private TimeSheet timeSheet;
 	private JTabbedPane myTabbedPane;
-	private JLabel Jlab;
+	private JLabel jLabel;
 	private JTextField textFieldId,textFieldFirst,textFieldLast,textFieldState,textFieldHourlyRate;
 	private JList<String> shiftList;
 	private DefaultListModel<String> listModel;
@@ -53,8 +53,8 @@ public class WorkerAdvancedWindow extends JFrame implements ActionListener{
 		setTitle("PayRoll System");
 		setSize(800,800);
 		
-		newWorker = new Worker();
-		TS = new TimeSheet();
+		worker = new Worker();
+		timeSheet = new TimeSheet();
 		
 		JMenuBar newBar = new JMenuBar();
 		JMenu menu =  new JMenu("Menu");
@@ -88,7 +88,6 @@ public class WorkerAdvancedWindow extends JFrame implements ActionListener{
 				
 		this.setJMenuBar(newBar);
 
-		//Adds to the window
 		myTabbedPane = new JTabbedPane();
 		add(myTabbedPane);
 		
@@ -97,28 +96,28 @@ public class WorkerAdvancedWindow extends JFrame implements ActionListener{
 	
 		panelOne.setBackground(Color.LIGHT_GRAY);
 		
-		Jlab = new JLabel("Id");
-		panelOne.add(Jlab);
+		jLabel = new JLabel("Id");
+		panelOne.add(jLabel);
 
-		Integer i = newWorker.getWorkerInfo().getId();
+		Integer i = worker.getWorkerInfo().getId();
 
 		panelOne.add(textFieldId = new JTextField(i.toString()));
 		
-		panelOne.add(Jlab =new JLabel("First"));
+		panelOne.add(jLabel =new JLabel("First"));
 	
-		panelOne.add(textFieldFirst = new JTextField(newWorker.getWorkerInfo().getFirstName()));
+		panelOne.add(textFieldFirst = new JTextField(worker.getWorkerInfo().getFirstName()));
 	
-		panelOne.add(Jlab =new JLabel("Last"));
+		panelOne.add(jLabel =new JLabel("Last"));
 	
-		panelOne.add(textFieldLast = new JTextField(newWorker.getWorkerInfo().getLastName()));
+		panelOne.add(textFieldLast = new JTextField(worker.getWorkerInfo().getLastName()));
 	
-		panelOne.add(Jlab =new JLabel("State"));
+		panelOne.add(jLabel =new JLabel("State"));
 
-		panelOne.add(textFieldState = new JTextField(newWorker.getWorkerInfo().getState()));
+		panelOne.add(textFieldState = new JTextField(worker.getWorkerInfo().getState()));
 
-		panelOne.add(Jlab =new JLabel("Hourly Rate"));
+		panelOne.add(jLabel =new JLabel("Hourly Rate"));
 
-		String perHour = String.valueOf(newWorker.getWorkerInfo().getHourlyRate());
+		String perHour = String.valueOf(worker.getWorkerInfo().getHourlyRate());
 		textFieldHourlyRate = new JTextField(perHour);
 		
 		panelOne.add(textFieldHourlyRate);
@@ -127,13 +126,9 @@ public class WorkerAdvancedWindow extends JFrame implements ActionListener{
 
 		myTabbedPane.addTab("Worker Information", panelOne);
 		
-		//Creates a the second panel
 		JPanel panelTwo = new JPanel();
-		
-		//Sets the background color
 		panelTwo.setBackground(Color.LIGHT_GRAY);
 		
-		//Initializes the the listModel variable
 		listModel = new DefaultListModel<String>();
 		
         shiftList = new JList<String>(listModel);
@@ -143,6 +138,7 @@ public class WorkerAdvancedWindow extends JFrame implements ActionListener{
 		myTabbedPane.addTab("Time Sheet", panelTwo);
 		
 	}//end constructor	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
@@ -162,41 +158,41 @@ public class WorkerAdvancedWindow extends JFrame implements ActionListener{
 					String selectedFile = fileChooser.getSelectedFile().getPath();					
 					
 					//Scanner declaration
-					Scanner fileScnner;
+					Scanner fileScanner;
 					
 					try 
 					{
 						//new Scanner ins
-						fileScnner = new Scanner(new File (selectedFile));
+						fileScanner = new Scanner(new File (selectedFile));
 						
 						//reads the information in from the file
-						newWorker.Read(fileScnner);
+						worker.Read(fileScanner);
 						
 						//sets the new id to the JTextField Variable
-						Integer i = newWorker.getWorkerInfo().getId();
+						Integer i = worker.getWorkerInfo().getId();
 						textFieldId.setText(i.toString());
 						
 						//sets the new first name to the JTextField Variable
-						textFieldFirst.setText(newWorker.getWorkerInfo().getFirstName());
+						textFieldFirst.setText(worker.getWorkerInfo().getFirstName());
 						
 						//sets the new last name to the JTextField Variable
-						textFieldLast.setText(newWorker.getWorkerInfo().getLastName());
+						textFieldLast.setText(worker.getWorkerInfo().getLastName());
 
 						//sets the new State to the JTextField Variable
-						textFieldState .setText(newWorker.getWorkerInfo().getState());
+						textFieldState .setText(worker.getWorkerInfo().getState());
 						
 						//sets the new hourly rate to the JTextField Variable
-						String perHour = String.valueOf(newWorker.getWorkerInfo().getHourlyRate());
+						String perHour = String.valueOf(worker.getWorkerInfo().getHourlyRate());
 						textFieldHourlyRate.setText(perHour);
 										
 						//For loop that sets the listModel elements to the worker shift info
-						for(int j = 0; j < newWorker.getTimeSheet().count; j++ )
+						for(int j = 0; j < worker.getTimeSheet().count; j++ )
 						{
-							listModel.addElement(newWorker.getWorkerInfo().getId() + " "
-							+ newWorker.getTimeSheet().newShift[j].getHoursWorked() + " "
-							+ newWorker.getTimeSheet().newShift[j].getDate().getMonth() + " "
-							+ newWorker.getTimeSheet().newShift[j].getDate().getDay() + " "
-							+ newWorker.getTimeSheet().newShift[j].getDate().getYear());
+							listModel.addElement(worker.getWorkerInfo().getId() + " "
+							+ worker.getTimeSheet().newShift[j].getHoursWorked() + " "
+							+ worker.getTimeSheet().newShift[j].getDate().getMonth() + " "
+							+ worker.getTimeSheet().newShift[j].getDate().getDay() + " "
+							+ worker.getTimeSheet().newShift[j].getDate().getYear());
 						}
 					} catch (FileNotFoundException ex) 
 					{
@@ -234,31 +230,31 @@ public class WorkerAdvancedWindow extends JFrame implements ActionListener{
 						saveAsFile = new PrintStream(fileToBeSaved);
 								
 						//Sends the information to the Print Stream
-						saveAsFile.print(newWorker.getWorkerInfo().getId());
+						saveAsFile.print(worker.getWorkerInfo().getId());
 						saveAsFile.print("\n");
-						saveAsFile.print(newWorker.getWorkerInfo().getFirstName());
+						saveAsFile.print(worker.getWorkerInfo().getFirstName());
 						saveAsFile.print("\n");
-						saveAsFile.print(newWorker.getWorkerInfo().getLastName());
+						saveAsFile.print(worker.getWorkerInfo().getLastName());
 						saveAsFile.print("\n");
-						saveAsFile.print(newWorker.getWorkerInfo().getState());
+						saveAsFile.print(worker.getWorkerInfo().getState());
 						saveAsFile.print("\n");
-						saveAsFile.print(newWorker.getWorkerInfo().getHourlyRate());
+						saveAsFile.print(worker.getWorkerInfo().getHourlyRate());
 						saveAsFile.print("\n");				
-						saveAsFile.print(newWorker.getTimeSheet().count);
+						saveAsFile.print(worker.getTimeSheet().count);
 						saveAsFile.print("\n");
 						
 						//For Loop that sends the information to he Print Stream
-						for (int i = 0; i < TS.count; i++)
+						for (int i = 0; i < timeSheet.count; i++)
 						{
-							saveAsFile.print(newWorker.getTimeSheet().newShift[i].getId());
+							saveAsFile.print(worker.getTimeSheet().newShift[i].getId());
 							saveAsFile.print(" ");
-							saveAsFile.print(newWorker.getTimeSheet().newShift[i].getHoursWorked());
+							saveAsFile.print(worker.getTimeSheet().newShift[i].getHoursWorked());
 							saveAsFile.print(" ");
-							saveAsFile.print(newWorker.getTimeSheet().newShift[i].getDate().getMonth());
+							saveAsFile.print(worker.getTimeSheet().newShift[i].getDate().getMonth());
 							saveAsFile.print(" ");
-							saveAsFile.print(newWorker.getTimeSheet().newShift[i].getDate().getDay());
+							saveAsFile.print(worker.getTimeSheet().newShift[i].getDate().getDay());
 							saveAsFile.print(" ");
-							saveAsFile.print(newWorker.getTimeSheet().newShift[i].getDate().getYear());
+							saveAsFile.print(worker.getTimeSheet().newShift[i].getDate().getYear());
 							saveAsFile.print("\n");
 						}	
 						//closes the Print Stream 
@@ -297,7 +293,7 @@ public class WorkerAdvancedWindow extends JFrame implements ActionListener{
 						PrintStream report2File = new PrintStream(fileToBeSaved);
 				
 						//uses existing method to print the report to a file using a Print Stream
-						newWorker.Report(report2File);
+						worker.Report(report2File);
 						
 						//closes the Print Stream
 						report2File.close();

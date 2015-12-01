@@ -11,11 +11,9 @@
 
 package Hernandez.bcs345.payroll.userinterface;
 
-import java.io.FileNotFoundException;
-
 public class WorkerSwingUI {
 	
-	public void ShowUserInterface() throws FileNotFoundException
+	public void ShowUserInterface()
 	{
 		WorkerWindow workerWindow;
 		

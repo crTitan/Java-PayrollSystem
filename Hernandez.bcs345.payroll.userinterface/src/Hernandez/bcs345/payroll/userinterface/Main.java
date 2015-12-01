@@ -11,12 +11,11 @@
 
 package Hernandez.bcs345.payroll.userinterface;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
 	
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) {
 
 		MainMenuUI menu = new MainMenuUI();
 		
@@ -28,10 +27,10 @@ public class Main {
 		private Scanner scanner = new Scanner(System.in);
 		private int input = 0;
 	
-		public void showMenu() throws FileNotFoundException{
+		public void showMenu() {
 			
 			do {
-			System.out.println("Please enter a valid choise or 5 to exit the program");
+			
 
 			System.out.println("\nChoose UI\n" + "---------\n" + "1 – Shift UI\n" + "2 – TimeSheet UI\n"
 					+ "3 – Worker Swing UI\n" + "4 – Worker Advanced Swing UI\n" + "5 - Exit\n" + "Enter Choice:");
@@ -42,33 +41,33 @@ public class Main {
 
 			case 1:
 
-				ShiftConsoleUI userUI = new ShiftConsoleUI();
+				ShiftConsoleUI shiftConsoleUI = new ShiftConsoleUI();
 				
-				userUI.ShowUserInterface();
+				shiftConsoleUI.ShowUserInterface();
 				
 				break;
 
 			case 2:
 
-				TimeSheetConsoleUI timeSheet = new TimeSheetConsoleUI();
+				TimeSheetConsoleUI timeSheetConsoleUI = new TimeSheetConsoleUI();
 				
-				timeSheet.ShowUserInterface();
+				timeSheetConsoleUI.ShowUserInterface();
 				
 				break;
 
 			case 3:
 
-				WorkerSwingUI WSUI = new WorkerSwingUI();
+				WorkerSwingUI workerSwingUI = new WorkerSwingUI();
 				
-				WSUI.ShowUserInterface();
+				workerSwingUI.ShowUserInterface();
 				
 				break;
 
 			case 4:
 
-				WorkerAdvancedSwingUI AncdWorkerdSwingUI = new WorkerAdvancedSwingUI();
+				WorkerAdvancedSwingUI workerAdvancedSwingUI = new WorkerAdvancedSwingUI();
 				
-				AncdWorkerdSwingUI.ShowUserInterface();
+				workerAdvancedSwingUI.ShowUserInterface();
 				
 				break;
 
@@ -79,7 +78,9 @@ public class Main {
 				break;
 
 			default:
-
+				
+				System.out.println("Please enter a valid choise or 5 to exit the program");
+				
 				break;
 			}
 
