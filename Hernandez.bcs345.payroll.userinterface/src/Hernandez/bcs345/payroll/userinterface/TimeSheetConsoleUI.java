@@ -51,6 +51,7 @@ public class TimeSheetConsoleUI {
 				Scanner fileScanner;
 
 				try {
+					
 					fileScanner = new Scanner(new File(inFileName));
 
 					newTimeSheet.Read(fileScanner);
