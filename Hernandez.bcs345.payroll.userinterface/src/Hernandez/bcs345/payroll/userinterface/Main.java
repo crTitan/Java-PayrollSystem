@@ -1,16 +1,14 @@
-//****************************************************
-// File: Main.java  
-//
-// Purpose: Main program that instantiates the UIs.
-//
-// Written By: Paul A. Rodriguez Hernandez
-//
-// Date: 11/05/2014
-//       
-//****************************************************
+/** 
+ * Main.java
+ * 
+ * Purpose: Main program that instantiates the menus and UIs.
+ * 
+ * @author     Paul Rodriguez Hernandez
+ * @version     %I%, %G%
+ * @since       1.0
+ */
 
 package Hernandez.bcs345.payroll.userinterface;
-
 import java.util.Scanner;
 
 public class Main {
@@ -31,7 +29,6 @@ public class Main {
 			
 			do {
 			
-
 			System.out.println("\nChoose UI\n" + "---------\n" + "1 – Shift UI\n" + "2 – TimeSheet UI\n"
 					+ "3 – Worker Swing UI\n" + "4 – Worker Advanced Swing UI\n" + "5 - Exit\n" + "Enter Choice:");
 
@@ -76,7 +73,7 @@ public class Main {
 				System.out.println("You have exited the program!");
 				
 				break;
-
+		
 			default:
 				
 				System.out.println("Please enter a valid choise or 5 to exit the program");

@@ -1,11 +1,11 @@
-/**
- * DB_Connect.java --- Connect the tot he database and also
- * 						runs the queries that are passed in.
+/** 
+ * BD_Connect.java
  * 
- *  @author   Paul A. Rodriguez Hernandez
+ * Purpose: connects and executes queries on the database.
  * 
- *  @version %I%* 
- *  
+ * @author     Paul Rodriguez Hernandez
+ * @version     %I%, %G%
+ * @since       1.0
  */
 
 package Hernandez.bcs345.payroll.helperclasses;
@@ -21,11 +21,11 @@ public class DB_Connect {
 	private static final String dbName = "payroll_system";
 	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	private static final String DB_URL = "jdbc:mysql://localhost/" + dbName;
-	private Connection connection = null;
-
 	private static final String USER = "root";
 	private static final String PASS = "";
-	
+	private Connection connection = null;
+	private ResultSet resultSet = null;
+	private PreparedStatement preparedStatement = null;
 
 	/* Returns a ResultSet resulting from executing
 	 * the query that is passed in as a String
@@ -38,8 +38,7 @@ public class DB_Connect {
 	 * */
 	public ResultSet returnResultSet(String sql) {
 
-		ResultSet resultSet = null;
-		PreparedStatement preparedStatement = null;
+		
 
 		try {
 
@@ -67,5 +66,23 @@ public class DB_Connect {
 		// returns a resultSet or null in the query failed
 		return resultSet;
 	}// method end
+	
+	
+	/*
+	 * Closes the Connection, PreparedStatement, and ResultSet
+	*/
+	public void closeConn()
+	{
+		try{
+			
+		resultSet.close();
+		preparedStatement.close();
+		connection.close();
+		
+		}catch(SQLException exec){
+		
+			exec.printStackTrace();
+		}
+	}
 
 }// class end

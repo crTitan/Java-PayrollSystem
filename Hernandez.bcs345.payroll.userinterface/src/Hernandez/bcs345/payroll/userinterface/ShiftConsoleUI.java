@@ -28,6 +28,8 @@ public class ShiftConsoleUI {
 	@SuppressWarnings("unused")
 	private String dummyVar;
 	private Scanner fileScanner;
+	private String inFileName;
+	private String outFileName;
 
 	public void ShowUserInterface() {
 
@@ -41,9 +43,7 @@ public class ShiftConsoleUI {
 			switch (input) {
 
 			case 1:
-
-				String inFileName;
-									
+				
 				System.out.println("Enter a file name:");
 				
 				//consumes the \n from nextInt()
@@ -64,8 +64,6 @@ public class ShiftConsoleUI {
 				break;
 
 			case 2:
-
-				String outFileName;
 
 				System.out.println("Enter a file name:");
 

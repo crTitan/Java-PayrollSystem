@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import Hernandez.bcs345.payroll.helperclasses.DB_Connect;
 import Hernandez.bcs345payroll.employeedata.Shift;
 import Hernandez.bcs345payroll.employeedata.TimeSheet;
 
@@ -87,8 +88,6 @@ public class TimeSheetConsoleUI {
 					System.out.print("The output file " + outFileName + " could not be created");
 				}
 				
-				
-
 				break;
 
 			case 3:
@@ -125,6 +124,18 @@ public class TimeSheetConsoleUI {
 
 				System.out.print('\n');
 
+				break;
+				
+			case 6:
+				
+				//test case
+				
+				DB_Connect db = new DB_Connect();
+				
+				String sql = "SELECT emp_id, hours_worked FROM employees WHERE"; 
+				
+				db.returnResultSet(sql);
+			
 				break;
 
 			case 5:
